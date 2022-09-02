@@ -69,6 +69,7 @@ end
 function __init__()
     initrepl(input_handler;
              prompt_text="History> ",
+             prompt_color=166,
              start_key='!',
              mode_name=:history)
 end
