@@ -1,4 +1,11 @@
 using ReplMaker
+import REPL
+import REPL.LineEdit.complete_line
+import REPL.LineEdit.CompletionProvider
+
+struct HistoryCompletionProvider <: CompletionProvider
+    repl_completion_provider::CompletionProvider
+end
 
 basehist() = Base.active_repl.mistate.current_mode.hist
 
@@ -37,7 +44,8 @@ function histsave(fname::AbstractString)
     "$n bytes written to $fname"
 end
 
-function substitution(istr::AbstractString)
+function substitution(istr::AbstractString; mode=:eval)
+    @assert mode in [:eval, :tab]
     substr = split(istr, "!")
     if length(substr) == 1
         return istr
@@ -50,7 +58,14 @@ function substitution(istr::AbstractString)
                         "!" * str
                     else
                         i = parse(Int64, m.match)
-                        history()[(i>0 ? i : end+i),3] * str[length(m.match)+1:end]
+                        if mode == :tab && i == 0
+                            istr
+                        else
+                            if mode == :tab && i < 0
+                                i += 1
+                            end
+                            history()[(i>0 ? i : end+i),3] * str[length(m.match)+1:end]
+                        end
                     end
         end
         return ostr
@@ -66,11 +81,22 @@ function input_handler(inputstr)
     end
 end
 
+function complete_line(x::HistoryCompletionProvider, s)
+    firstpart = String(s.input_buffer.data[1:s.input_buffer.ptr-1])
+    firstpartsub = substitution(firstpart; mode=:tab)
+    if firstpart != firstpartsub
+        return ([firstpartsub], firstpart, true)
+    else
+        return complete_line(x.repl_completion_provider, s)
+    end
+end
+
 function __init__()
     initrepl(input_handler;
              prompt_text="History> ",
              prompt_color=166,
              start_key='!',
-             mode_name=:history)
+             mode_name=:history,
+             completion_provider=HistoryCompletionProvider(REPL.REPLCompletionProvider()))
 end
 
