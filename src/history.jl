@@ -67,6 +67,9 @@ function input_handler(inputstr)
 end
 
 function __init__()
-    initrepl(input_handler; prompt_text="History> ", start_key='!', mode_name=:history)
+    initrepl(input_handler;
+             prompt_text="History> ",
+             start_key='!',
+             mode_name=:history)
 end
 
