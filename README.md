@@ -23,10 +23,10 @@ Hereafter typing an '!' character at the beginning of a line in the Julia
 REPL will activate `History` mode.
 
 In `History` mode, a line starting with a '/' character will return the
-history entries whos text contains the string on the rest of the line
+history entries whose text contains the string on the rest of the line
 (using '/' was inspired by [less](https://en.wikipedia.org/wiki/Less_(Unix))
 and [vi](https://www.vim.org)).
-A line starting with a '^' character will return the history entries whos
+A line starting with a '^' character will return the history entries whose
 text starts with the string on the rest of the line
 (using '^' was inspired by
 [regular expressions](https://docs.julialang.org/en/v1/manual/strings/#man-regex-literals)).
