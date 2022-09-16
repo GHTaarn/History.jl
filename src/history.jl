@@ -27,23 +27,6 @@ See also `history`.
 """
 histexec(i::Integer) = Main.eval(Meta.parse(basehist().history[i]))
 
-"""
-    histsave(fname::AbstractString)
-
-Save the REPL history in a file named `fname`.
-
-See also `history`.
-"""
-function histsave(fname::AbstractString)
-    n = 0
-    open(fname, "w") do f
-        foreach(history()[:,3]) do y
-            n += write(f, y*"\n")
-        end
-    end
-    "$n bytes written to $fname"
-end
-
 function substitution(istr::AbstractString; mode=:eval)
     @assert mode in [:eval, :tab]
     substr = split(istr, "!")
