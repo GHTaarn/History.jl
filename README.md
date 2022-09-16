@@ -90,13 +90,15 @@ History>
 
 ### Exported functions
 
-There are 3 exported functions: `history`, `histexec` and `histsave`. You can
+There are 4 exported functions: `history`, `histexec` `histsearch` and
+`histsave`. You can
 read more about these in their docstrings by typing the following in the Julia
 mode REPL:
 
 ```julia
 ?history
 ?histexec
+?histsearch
 ?histsave
 ```
 
