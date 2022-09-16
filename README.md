@@ -24,11 +24,11 @@ REPL will activate `History` mode.
 
 In `History` mode, a line starting with a '/' character will return the
 history entries whos text contains the string on the rest of the line
-(inspired by [less](https://en.wikipedia.org/wiki/Less_(Unix))
+(using '/' was inspired by [less](https://en.wikipedia.org/wiki/Less_(Unix))
 and [vi](https://www.vim.org)).
 A line starting with a '^' character will return the history entries whos
 text starts with the string on the rest of the line
-(inspired by regular expressions).
+(using '^' was inspired by regular expressions).
 
 In `History` mode, a line consisting of only an '!' character will print out
 exactly enough recent REPL history to fill your screen. Any '!' characters
