@@ -50,6 +50,10 @@ function input_handler(inputstr)
     if inputstr == "!"
         linestoshow = max(2, displaysize(stdout)[1] - 5)
         history()[end-linestoshow:end,:]
+    elseif match(r"(^/.+)", inputstr) != nothing
+        histsearch(inputstr[2:end])
+    elseif match(r"(^\^.+)", inputstr) != nothing
+        histsearch(s->startswith(s, inputstr[2:end]))
     else
         Main.eval(Meta.parse(substitution(inputstr)))
     end

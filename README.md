@@ -22,6 +22,13 @@ using History
 Hereafter typing an '!' character at the beginning of a line in the Julia
 REPL will activate `History` mode.
 
+In `History` mode, a line starting with a '/' character will return the
+history entries whos text contains the string on the rest of the line
+(inspired by `less` and `vi`).
+A line starting with a '^' character will return the history entries whos
+text starts with the string on the rest of the line
+(inspired by regular expressions).
+
 In `History` mode, a line consisting of only an '!' character will print out
 exactly enough recent REPL history to fill your screen. Any '!' characters
 immediately followed by a positive integer will substitute the text from
@@ -84,6 +91,19 @@ History> !
 
 History> !!4321 ? !4317 : 2*!4317
 1.9787164932467636
+
+History> ^!
+3×3 Matrix{Any}:
+ 4318  :history  "!-1"
+ 4322  :history  "!!-1"
+ 4324  :history  "!"
+
+History> /tln
+4×3 Matrix{Any}:
+ 4319  :history  "println(\"!-2\")"
+ 4320  :history  "println(\"!-2 \")"
+ 4323  :history  "println(\"!-1 and !-2\")"
+ 4327  :history  "/tln"
 
 History> 
 ```
