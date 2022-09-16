@@ -18,15 +18,6 @@ mode and the third column is the command as a `String`.
 """
 history() = hcat(1:length(basehist().history), basehist().modes, basehist().history)
 
-"""
-    histexec(i::Integer)
-
-Execute line number `i` from REPL history.
-
-See also [`history`](@ref).
-"""
-histexec(i::Integer) = Main.eval(Meta.parse(basehist().history[i]))
-
 function substitution(istr::AbstractString; mode=:eval)
     @assert mode in [:eval, :tab]
     substr = split(istr, "!")
