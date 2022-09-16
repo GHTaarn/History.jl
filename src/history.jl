@@ -23,7 +23,7 @@ history() = hcat(1:length(basehist().history), basehist().modes, basehist().hist
 
 Execute line number `i` from REPL history.
 
-See also `history`.
+See also [`history`](@ref).
 """
 histexec(i::Integer) = Main.eval(Meta.parse(basehist().history[i]))
 

@@ -14,6 +14,8 @@ end
 
 Return history entries that match a string, regular expression or function.
 
+See also [`history`](@ref).
+
 # Examples
 
 ```julia

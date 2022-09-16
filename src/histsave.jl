@@ -3,7 +3,7 @@
 
 Save the REPL history in a file named `fname`.
 
-See also `history`.
+See also [`history`](@ref).
 """
 function histsave(fname::AbstractString)
     n = 0
