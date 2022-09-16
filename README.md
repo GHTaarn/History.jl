@@ -28,7 +28,8 @@ history entries whos text contains the string on the rest of the line
 and [vi](https://www.vim.org)).
 A line starting with a '^' character will return the history entries whos
 text starts with the string on the rest of the line
-(using '^' was inspired by regular expressions).
+(using '^' was inspired by
+[regular expressions](https://docs.julialang.org/en/v1/manual/strings/#man-regex-literals)).
 
 In `History` mode, a line consisting of only an '!' character will print out
 exactly enough recent REPL history to fill your screen. Any '!' characters
