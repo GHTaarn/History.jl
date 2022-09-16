@@ -24,7 +24,8 @@ REPL will activate `History` mode.
 
 In `History` mode, a line starting with a '/' character will return the
 history entries whos text contains the string on the rest of the line
-(inspired by `less` and `vi`).
+(inspired by [less](https://en.wikipedia.org/wiki/Less_(Unix))
+and [vi](https://www.vim.org)).
 A line starting with a '^' character will return the history entries whos
 text starts with the string on the rest of the line
 (inspired by regular expressions).
