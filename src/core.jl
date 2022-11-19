@@ -33,7 +33,8 @@ function substitution(istr::AbstractString; mode=:eval)
                     else
                         i = parse(Int64, m.match)
                         if mode == :tab && i == 0
-                            istr
+                            remainder = str[length(m.match)+1:end]
+                            istr * remainder
                         else
                             if mode == :tab && i < 0
                                 i += 1
