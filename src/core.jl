@@ -50,7 +50,7 @@ end
 function input_handler(inputstr)
     if inputstr == "!"
         linestoshow = max(2, displaysize(stdout)[1] - 5)
-        history()[end-linestoshow:end,:]
+        history()[max(1,end-linestoshow):end,:]
     elseif match(r"(^/.+)", inputstr) != nothing
         histsearch(inputstr[2:end])
     elseif match(r"(^\^.+)", inputstr) != nothing
