@@ -34,8 +34,9 @@ text starts with the string on the rest of the line
 In `History` mode, a line consisting of only an '!' character will print out
 exactly enough recent REPL history to fill your screen. Any '!' characters
 immediately followed by a positive integer will substitute the text from
-the corresponding input line into the rest of the current line before
-executing it. A negative integer after an '!' character will be substituted
+the corresponding historic input line into the rest of the current line
+immediately before the line is executed.
+A negative integer after an '!' character will be substituted
 with the text of the input line the given number of lines ago.
 
 Tab completion: If the current input line contains an '!' character followed
