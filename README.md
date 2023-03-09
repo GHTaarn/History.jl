@@ -152,7 +152,7 @@ a `|` as the first key press from the Julia mode commandline.
 
 ## Known bugs
 
-1. Commands entered in `History` mode produce errors when [Revise](https://juliapackages.com/p/revise) tries to recompile
+1. Commands entered in `History` mode produce errors when [Revise](https://juliapackages.com/p/revise) needs to recompile
 2. In `History` mode, incomplete lines produce a stack trace instead of a line change when the `Return` key is pressed
 
 For the first bug, if possible and acceptable, the workaround is to tab
