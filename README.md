@@ -125,3 +125,42 @@ mode REPL:
 ?histsave
 ```
 
+### Activation at startup
+From a shell script or on the OS shell commandline:
+```bash
+julia -i -e 'atreplinit(x->eval(Meta.parse("using History")))'
+```
+
+OR
+
+In `~/.julia/config/startup.jl`:
+```julia
+atreplinit() do repl
+    eval(Meta.parse("using History"))
+end
+```
+## Other usage tips
+
+The `History package is designed to be used in combination with Julias
+existing history capabilities such as `Ctrl-R`, `Ctrl-S`, `Up arrow` and
+`Down arrow` (see https://docs.julialang.org/en/v1/stdlib/REPL/#Search-modes ).
+
+The [TerminalPager](https://juliapackages.com/p/terminalpager) package can be
+a uselful companion to the [exported functions](#Exported-functions).
+This package also has a little known commandline mode that can be entered with
+a `|` as the first key press from the Julia mode commandline.
+
+## Known bugs
+
+1. Commands entered in `History` mode produce errors when [Revise](https://juliapackages.com/p/revise) tries to recompile
+2. In `History` mode, incomplete lines produce a stack trace instead of a line change when the `Return` key is pressed
+
+In the first case, the workaround is to tab complete the entire line and then
+exit `History` mode (with the `Home` key followed by `Backspace`) just before
+the `Return` key is pressed.
+
+In the second case, a workaround is to use the `Meta`+`Return` key combination
+instead of only `Return`. Exiting `History` mode as above is also an option
+and if necessary, `History` mode can be reentered (by pressing the `Home` key
+followed by the `!` key) subsequently.
+
