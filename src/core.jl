@@ -7,7 +7,16 @@ struct HistoryCompletionProvider <: CompletionProvider
     repl_completion_provider::CompletionProvider
 end
 
-basehist() = Base.active_repl.mistate.current_mode.hist
+basehist = () -> Base.active_repl.mistate.current_mode.hist
+
+function redefine_basehist!(f::Function)
+    isinteractive() && error("This function may not be used in interactive sessions")
+    # The above restriction was made in order to prevent accidentally using
+    # this in interactive sessions. I am open to removing it if there is a
+    # sufficiently important use case. The function was mainly created in order
+    # to facilitate automatic testing.
+    global basehist = f
+end
 
 """
     history()
@@ -71,6 +80,10 @@ function complete_line(x::HistoryCompletionProvider, s)
 end
 
 function __init__()
+    if !isinteractive()
+        @info "Session is not interactive"
+        return
+    end
     initrepl(input_handler;
              prompt_text="History> ",
              prompt_color=166,
