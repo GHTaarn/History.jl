@@ -6,3 +6,7 @@ version = "0.2.0-DEV"
 [deps]
 REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 ReplMaker = "b873ce64-0db9-51f5-a568-4457d8e49576"
+
+[compat]
+ReplMaker = "0.2.2"
+julia = "1.0 - 1.10"
