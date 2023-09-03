@@ -150,6 +150,19 @@ a useful companion to `History.jl`s [exported functions](#Exported-functions).
 `TerminalPager` also has a little known commandline mode that can be entered with
 a `|` as the first key press from the Julia mode commandline.
 
+The [OhMyREPL](https://juliapackages.com/p/ohmyrepl) package also has some
+history functionality and seems to works alongside History.jl provided that
+OhMyREPL is loaded before History.jl, e.g.:
+
+```julia
+using OhMyREPL
+using History
+```
+
+The [numbered prompts](https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt)
+introduced in Julia 1.9 use a different numbering convention than `History.jl`
+does.
+
 ## Known bugs
 
 1. Commands entered in `History` mode produce errors when [Revise](https://juliapackages.com/p/revise) needs to recompile
@@ -166,3 +179,16 @@ instead of only `Return`. Exiting `History` mode as above is also an option
 and if necessary, `History` mode can be reentered (by pressing the `Home` key
 followed by the `!` key) subsequently.
 
+## Feedback
+
+Firstly, if you like this package and find it useful, please give it a star
+on the [Github page](https://github.com/GHTaarn/History.jl).
+If you find any bugs, please report them
+[here](https://github.com/GHTaarn/History.jl/issues)
+or [submit a pull request](https://github.com/GHTaarn/History.jl/pulls).
+Before doing this, please read
+[the CONTRIBUTING.md file](docs/CONTRIBUTING.md).
+
+You are also welcome to write other feedback at
+[discussions](https://github.com/GHTaarn/History.jl/discussions)
+including praise, experiences with History.jl or questions about use.
