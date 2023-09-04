@@ -159,7 +159,8 @@ using OhMyREPL
 using History
 ```
 
-The [numbered prompts](https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt)
+Be aware that the
+[numbered prompts](https://docs.julialang.org/en/v1/stdlib/REPL/#Numbered-prompt)
 introduced in Julia 1.9 use a different numbering convention than `History.jl`
 does.
 
