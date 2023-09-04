@@ -19,7 +19,7 @@ In the Julia REPL type:
 using History
 ```
 
-Hereafter typing an '!' character at the beginning of a line in the Julia
+Hereafter, typing an '!' character at the beginning of a line in the Julia
 REPL will activate `History` mode.
 
 In `History` mode, a line starting with a '/' character will return the
@@ -151,8 +151,8 @@ a useful companion to `History.jl`s [exported functions](#Exported-functions).
 a `|` as the first key press from the Julia mode commandline.
 
 The [OhMyREPL](https://juliapackages.com/p/ohmyrepl) package also has some
-history functionality and seems to works alongside History.jl provided that
-OhMyREPL is loaded before History.jl, e.g.:
+history functionality and seems to work alongside `History.jl` provided that
+OhMyREPL is loaded before `History.jl`, e.g.:
 
 ```julia
 using OhMyREPL
@@ -191,4 +191,4 @@ Before doing this, please read
 
 You are also welcome to write other feedback at
 [discussions](https://github.com/GHTaarn/History.jl/discussions)
-including praise, experiences with History.jl or questions about use.
+including praise, experiences with `History.jl` or questions about use.
