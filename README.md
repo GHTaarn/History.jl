@@ -167,8 +167,9 @@ does.
 #### Unsupported Julia versions
 
 Because this package makes use of undocumented features in Julia, compatibility
-has been restricted to stable Julia releases. Use of this package with unstable
-Julia releases is not recommended and not supported, but is possible if it is
+has been restricted to stable Julia 1.x releases. Use of this package with
+unstable Julia releases is not recommended and not supported, but is often
+possible if it is
 installed with `Pkg.add("https://github.com/GHTaarn/History.jl#nocompat")`.
 
 ## Known bugs
