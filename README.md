@@ -164,6 +164,13 @@ Be aware that the
 introduced in Julia 1.9 use a different numbering convention than `History.jl`
 does.
 
+#### Unsupported Julia versions
+
+Because this package makes use of undocumented features in Julia, compatibility
+has been restricted to stable Julia releases. Use of this package with unstable
+Julia releases is not recommended and not supported, but is possible if it is
+installed with `Pkg.add("https://github.com/GHTaarn/History.jl#nocompat")`.
+
 ## Known bugs
 
 1. Commands entered in `History` mode produce errors when [Revise](https://juliapackages.com/p/revise) needs to recompile
