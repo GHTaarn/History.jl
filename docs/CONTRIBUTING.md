@@ -31,7 +31,7 @@ For pull requests, please have the following in mind:
    5. Create the branch release-x.x
    6. On the master branch, edit Project.toml and bump up its version to x.x.0-DEV (where the minor version is increased by one, or major version is increased by one and minor version is set to zero)
    7. Push master and the new branch to Github
-   8. Write a comment containing the text `@JuliaRegistrator register branch=release-x.x` on the commit on Github to trigger the Julia registrator to register the new version.
    8. Inform everyone with write permission that it is safe to commit to master
+   8. Write a comment containing the text `@JuliaRegistrator register branch=release-x.x` on the commit on Github to trigger the Julia registrator to register the new version.
    9. On Github, create a new release, giving release-x.x the tag vx.x.0
 
