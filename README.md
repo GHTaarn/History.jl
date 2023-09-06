@@ -100,6 +100,7 @@ History> ^!
  4318  :history  "!-1"
  4322  :history  "!!-1"
  4324  :history  "!"
+ 4325  :history  "!!4321 ? !4317 : 2*!4317"
 
 History> /tln
 4×3 Matrix{Any}:
