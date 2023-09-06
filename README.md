@@ -198,6 +198,6 @@ or [submit a pull request](https://github.com/GHTaarn/History.jl/pulls).
 Before doing this, please read
 [the CONTRIBUTING.md file](docs/CONTRIBUTING.md).
 
-You are also welcome to write other feedback at
-[discussions](https://github.com/GHTaarn/History.jl/discussions)
-including praise, experiences with `History.jl` or questions about use.
+If what you want to write is neither an issue nor a pull request, feel free
+to use the
+[discussions](https://github.com/GHTaarn/History.jl/discussions) page.
