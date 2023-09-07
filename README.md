@@ -137,7 +137,7 @@ OR
 In `~/.julia/config/startup.jl`:
 ```julia
 atreplinit() do repl
-    eval(Meta.parse("using History"))
+    @eval using History
 end
 ```
 ### Other usage tips
