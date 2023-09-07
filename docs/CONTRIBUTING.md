@@ -15,7 +15,6 @@ For pull requests, please have the following in mind:
  - Document exported symbols with docstrings
  - Try to use the existing style, even if it is not entirely your taste
  - If you make something that looks stupid at first glance, please explain it with a comment so that people are not tempted to tidy it in an incorrect way (if you make something that looks stupid and is stupid, please tidy it before submitting the pull request (unless it is meant as a mockup))
- - If you have not contacted me beforehand, pull requests will be regarded as a first draft
  - New functions/methods should get a new testcase (functions/methods that are extremely simple are exempted)
 
 ## For developers with write permission to the History.jl Github repository:
@@ -33,5 +32,6 @@ For pull requests, please have the following in mind:
    6. On the master branch, edit Project.toml and bump up its version to x.x.0-DEV (where the minor version is increased by one, or major version is increased by one and minor version is set to zero)
    7. Push master and the new branch to Github
    8. Inform everyone with write permission that it is safe to commit to master
+   8. Write a comment containing the text `@JuliaRegistrator register branch=release-x.x` on the commit on Github to trigger the Julia registrator to register the new version.
    9. On Github, create a new release, giving release-x.x the tag vx.x.0
 

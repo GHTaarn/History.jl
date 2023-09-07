@@ -100,6 +100,7 @@ History> ^!
  4318  :history  "!-1"
  4322  :history  "!!-1"
  4324  :history  "!"
+ 4325  :history  "!!4321 ? !4317 : 2*!4317"
 
 History> /tln
 4×3 Matrix{Any}:
@@ -136,7 +137,7 @@ OR
 In `~/.julia/config/startup.jl`:
 ```julia
 atreplinit() do repl
-    eval(Meta.parse("using History"))
+    @eval using History
 end
 ```
 ### Other usage tips
@@ -164,6 +165,14 @@ Be aware that the
 introduced in Julia 1.9 use a different numbering convention than `History.jl`
 does.
 
+#### Unsupported Julia versions
+
+Because this package makes use of undocumented features in Julia, compatibility
+has been restricted to stable Julia 1.x releases. Use of this package with
+unstable Julia releases is not recommended and not supported, but is often
+possible if it is
+installed with `Pkg.add("https://github.com/GHTaarn/History.jl#nocompat")`.
+
 ## Known bugs
 
 1. Commands entered in `History` mode produce errors when [Revise](https://juliapackages.com/p/revise) needs to recompile
@@ -190,6 +199,6 @@ or [submit a pull request](https://github.com/GHTaarn/History.jl/pulls).
 Before doing this, please read
 [the CONTRIBUTING.md file](docs/CONTRIBUTING.md).
 
-You are also welcome to write other feedback at
-[discussions](https://github.com/GHTaarn/History.jl/discussions)
-including praise, experiences with `History.jl` or questions about use.
+If what you want to write is neither an issue nor a pull request, feel free
+to use the
+[discussions](https://github.com/GHTaarn/History.jl/discussions) page.

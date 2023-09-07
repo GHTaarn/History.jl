@@ -3,7 +3,8 @@
     histsave(fname::AbstractString, nitems::Integer)
 
 Save the REPL history in a file named `fname`. You can optionally restrict
-the output to the `nitems` most recent items in the REPL history or specify
+the output to the `nitems` most recent items in the REPL history (including the
+current line) or specify
 `indices` as the specific indices of the items to be output to the file.
 
 See also [`history`](@ref).
