@@ -1,7 +1,7 @@
 name = "History"
 uuid = "1d60e3b1-536a-4e4e-a637-1f588248ba8b"
 authors = ["GHTaarn <62629455+GHTaarn@users.noreply.github.com>"]
-version = "0.2.0"
+version = "0.3.0-DEV"
 
 [deps]
 REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
