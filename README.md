@@ -10,7 +10,7 @@ In the Julia REPL type:
 ```julia
 ] add https://github.org/GHTaarn/History.jl
 ```
-
+(If you are using an unstable version of Julia, [do this instead](#Unsupported-julia-versions))
 ## Use
 
 In the Julia REPL type:
