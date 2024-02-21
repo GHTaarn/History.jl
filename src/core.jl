@@ -74,8 +74,10 @@ function complete_line(x::HistoryCompletionProvider, s)
     firstpartsub = substitution(firstpart; mode=:tab)
     if firstpart != firstpartsub
         return ([firstpartsub], firstpart, true)
-    else
+    elseif VERSION <= v"1.9-"
         return complete_line(x.repl_completion_provider, s)
+    else
+        return complete_line(x.repl_completion_provider, s, Main)
     end
 end
 
