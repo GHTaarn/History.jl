@@ -36,6 +36,7 @@ For pull requests, please have the following in mind:
    9. On Github, create a new release, giving release-x.x the tag vx.x.0
 
  - Release procedure for patch releases (x.x.x releases):
+   0. Inform everyone with write permission that you are starting the patch release procedure
    1. Create a new temporary branch (e.g. dev-x.x.x) from release-x.x
    2. Commits to the temporary branch should preferably be created using `git cherry-pick -x master~ZZZ` (or refer to the commit on the **master** branch in another way)
    3. Increase the version in *Project.toml* to x.x.x and commit
