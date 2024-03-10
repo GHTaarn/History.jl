@@ -35,3 +35,13 @@ For pull requests, please have the following in mind:
    8. Write a comment containing the text `@JuliaRegistrator register branch=release-x.x` on the commit on Github to trigger the Julia registrator to register the new version.
    9. On Github, create a new release, giving release-x.x the tag vx.x.0
 
+ - Release procedure for patch releases (x.x.x releases):
+   1. Create a new temporary branch (e.g. dev-x.x.x) from release-x.x
+   2. Commits to the temporary branch should preferably be created using `git cherry-pick -x master~ZZZ` (or refer to the commit on the **master** branch in another way)
+   3. Increase the version in *Project.toml* to x.x.x and commit
+   4. If you committed blunders to the temporary branch, just delete it and create a new one
+   5. Test the temporary branch
+   6. Merge the temporary branch into release-x.x (e.g. `git switch release-x.x; git merge --no-ff dev-x.x.x`)
+   7. Push to Github
+   8. Write a comment containing the text `@JuliaRegistrator register branch=release-x.x` on the commit on Github to trigger the Julia registrator to register the new version.
+   9. On Github, create a new release, giving release-x.x the tag vx.x.x
