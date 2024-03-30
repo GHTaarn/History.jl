@@ -171,7 +171,7 @@ Because this package makes use of undocumented features in Julia, compatibility
 has been restricted to stable Julia 1.x releases. Use of this package with
 unstable Julia releases is not recommended and not supported, but is often
 possible if it is
-installed with `Pkg.add("https://github.com/GHTaarn/History.jl#nocompat")`.
+installed with `Pkg.add(url="https://github.com/GHTaarn/History.jl", rev="nocompat")`.
 
 ## Known bugs
 
