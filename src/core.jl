@@ -69,7 +69,7 @@ function input_handler(inputstr)
     end
 end
 
-function complete_line(x::HistoryCompletionProvider, s)
+function complete_line(x::HistoryCompletionProvider, s; hint::Any=:no_hint)
     firstpart = String(s.input_buffer.data[1:s.input_buffer.ptr-1])
     firstpartsub = substitution(firstpart; mode=:tab)
     if firstpart != firstpartsub
