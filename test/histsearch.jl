@@ -4,7 +4,11 @@ using History
 @testset "histsearch" begin
     modes = Symbol.('a':'z')
     h = string.('a':'z')
-    History.redefine_basehist!(() -> (; modes=modes, history=h))
+    @static if VERSION < v"1.13"
+        History.redefine_basehist!(() -> (; modes=modes, history=h))
+    else
+        History.redefine_basehist!(() -> (; history=[(; index=i, mode=modes[i], content=h[i]) for i in eachindex(h)]))
+    end
 
     @test histsearch(s -> s > "x") == [25 :y "y"; 26 :z "z"]
     @test histsearch("b") == [2 :b "b"]

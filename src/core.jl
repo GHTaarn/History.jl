@@ -25,7 +25,11 @@ Return the REPL history. This a `Matrix` containing one row for each command
 and where the first column is the line number, the second column is the REPL
 mode and the third column is the command as a `String`.
 """
-history() = hcat(1:length(basehist().history), basehist().modes, basehist().history)
+history() = @static if VERSION < v"1.13"
+    hcat(1:length(basehist().history), basehist().modes, basehist().history)
+else
+    [(Int64(x.index), x.mode, x.content) for x in basehist().history] |> stack |> permutedims
+end
 
 function substitution(istr::AbstractString; mode=:eval)
     @assert mode in [:eval, :tab]
