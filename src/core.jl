@@ -74,9 +74,20 @@ function input_handler(inputstr)
 end
 
 function complete_line(x::HistoryCompletionProvider, s; hint::Any=:no_hint)
+    separator = " --> "
     firstpart = String(s.input_buffer.data[1:s.input_buffer.ptr-1])
     firstpartsub = substitution(firstpart; mode=:tab)
     if firstpart != firstpartsub
+        if hint == true
+            incomplete_end =  "  ⃨"
+            w = displaysize(stdout)[2] - sum((prompt_text(), firstpart, separator, incomplete_end) .|> length)
+            hintstr = if contains("\n")(firstpartsub) || length(firstpartsub) > w
+                split(firstpartsub, "\n")[1][1:min(end,w)] * incomplete_end
+            else
+                firstpartsub
+            end
+            return ([firstpart * separator * hintstr ], firstpart, true)
+        end
         return ([firstpartsub], firstpart, true)
     elseif VERSION <= v"1.9-"
         return complete_line(x.repl_completion_provider, s)
