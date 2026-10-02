@@ -8,6 +8,7 @@ struct HistoryCompletionProvider <: CompletionProvider
 end
 
 basehist = () -> Base.active_repl.mistate.current_mode.hist
+prompt_text() = "history> "
 
 function redefine_basehist!(f::Function)
     isinteractive() && error("This function may not be used in interactive sessions")
@@ -102,7 +103,7 @@ function __init__()
         return
     end
     initrepl(input_handler;
-             prompt_text="History> ",
+             prompt_text=prompt_text,
              prompt_color=166,
              start_key='!',
              mode_name=:history,
