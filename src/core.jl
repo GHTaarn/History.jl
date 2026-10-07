@@ -8,6 +8,8 @@ struct HistoryCompletionProvider <: CompletionProvider
 end
 
 basehist = () -> Base.active_repl.mistate.current_mode.hist
+prompt_text() = get(ENV, "HISTORY_PROMPT", "history> ")
+separator() = get(ENV, "HISTORY_HINT_SEPARATOR", "  👉  ")
 
 function redefine_basehist!(f::Function)
     isinteractive() && error("This function may not be used in interactive sessions")
@@ -25,7 +27,11 @@ Return the REPL history. This a `Matrix` containing one row for each command
 and where the first column is the line number, the second column is the REPL
 mode and the third column is the command as a `String`.
 """
-history() = hcat(1:length(basehist().history), basehist().modes, basehist().history)
+history() = @static if VERSION < v"1.13"
+    hcat(1:length(basehist().history), basehist().modes, basehist().history)
+else
+    [(Int64(x.index), x.mode, x.content) for x in basehist().history] |> stack |> permutedims
+end
 
 function substitution(istr::AbstractString; mode=:eval)
     @assert mode in [:eval, :tab]
@@ -73,6 +79,16 @@ function complete_line(x::HistoryCompletionProvider, s; hint::Any=:no_hint)
     firstpart = String(s.input_buffer.data[1:s.input_buffer.ptr-1])
     firstpartsub = substitution(firstpart; mode=:tab)
     if firstpart != firstpartsub
+        if hint == true
+            incomplete_end =  "  ⃨"
+            w = displaysize(stdout)[2] - sum((prompt_text(), firstpart, separator(), incomplete_end) .|> length) - 1 # The final -1 helps in situations where emojis take up extra space
+            hintstr = if contains("\n")(firstpartsub) || length(firstpartsub) > w
+                split(firstpartsub, "\n")[1][1:min(end,w)] * incomplete_end
+            else
+                firstpartsub
+            end
+            return ([firstpart * separator() * hintstr ], firstpart, true)
+        end
         return ([firstpartsub], firstpart, true)
     elseif VERSION <= v"1.9-"
         return complete_line(x.repl_completion_provider, s)
@@ -87,7 +103,7 @@ function __init__()
         return
     end
     initrepl(input_handler;
-             prompt_text="History> ",
+             prompt_text=prompt_text,
              prompt_color=166,
              start_key='!',
              mode_name=:history,
