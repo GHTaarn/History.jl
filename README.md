@@ -20,9 +20,9 @@ using History
 ```
 
 Hereafter, typing an '!' character at the beginning of a line in the Julia
-REPL will activate `History` mode.
+REPL will activate `history` mode.
 
-In `History` mode, a line starting with a '/' character will return the
+In `history` mode, a line starting with a '/' character will return the
 history entries whose text contains the string on the rest of the line
 (using '/' was inspired by [less](https://en.wikipedia.org/wiki/Less_(Unix))
 and [vi](https://www.vim.org)).
@@ -31,7 +31,7 @@ text starts with the string on the rest of the line
 (using '^' was inspired by
 [regular expressions](https://docs.julialang.org/en/v1/manual/strings/#man-regex-literals)).
 
-In `History` mode, a line consisting of only an '!' character will print out
+In `history` mode, a line consisting of only an '!' character will print out
 exactly enough recent REPL history to fill your screen. Any '!' characters
 immediately followed by a positive integer will substitute the text from
 the corresponding historic input line into the rest of the current line
@@ -54,32 +54,32 @@ completion will often avoid a lot of confusion and be more useful.
 julia> using History
 REPL mode history initialized. Press ! to enter and backspace to exit.
 
-History> sin(8)
+history> sin(8)
 0.9893582466233818
 
-History> !-1
+history> !-1
 0.9893582466233818
 
-History> println("!-2")
+history> println("!-2")
 sin(8)
 
-History> println("!-2 ")
+history> println("!-2 ")
 !-1 
 
-History> true
+history> true
 true
 
-History> !!-1
+history> !!-1
 false
 
-History> println("!-1 and !-2")
+history> println("!-1 and !-2")
 !!-1 and true
 
-History> 
+history> 
 ```
 
 ```
-History> !
+history> !
 10×3 Matrix{Any}:
  4315  :julia    "exit()"
  4316  :julia    "using History"
@@ -92,24 +92,24 @@ History> !
  4323  :history  "println(\"!-1 and !-2\")"
  4324  :history  "!"
 
-History> !!4321 ? !4317 : 2*!4317
+history> !!4321 ? !4317 : 2*!4317
 1.9787164932467636
 
-History> ^!
+history> ^!
 3×3 Matrix{Any}:
  4318  :history  "!-1"
  4322  :history  "!!-1"
  4324  :history  "!"
  4325  :history  "!!4321 ? !4317 : 2*!4317"
 
-History> /tln
+history> /tln
 4×3 Matrix{Any}:
  4319  :history  "println(\"!-2\")"
  4320  :history  "println(\"!-2 \")"
  4323  :history  "println(\"!-1 and !-2\")"
  4327  :history  "/tln"
 
-History> 
+history> 
 ```
 
 ### Exported functions
@@ -165,6 +165,15 @@ Be aware that the
 introduced in Julia 1.9 use a different numbering convention than `History.jl`
 does.
 
+#### Environment variables
+
+The `HISTORY_PROMPT` environment variable can be set to any string to be used
+as prompt.
+
+On Julia versions ≥1.11 the `HISTORY_HINT_SEPARATOR` environment variable is
+used to separate the typed text from the hint that indicates the result if
+tab completion were to be invoked.
+
 #### Unsupported Julia versions
 
 Because this package makes use of undocumented features in Julia, compatibility
@@ -175,18 +184,18 @@ installed with `Pkg.add(url="https://github.com/GHTaarn/History.jl", rev="nocomp
 
 ## Known bugs
 
-1. Commands entered in `History` mode produce errors when [Revise](https://juliapackages.com/p/revise) needs to recompile
-2. In `History` mode, incomplete lines produce a stack trace instead of a line change when the `Return` key is pressed
+1. Commands entered in `history` mode produce errors when [Revise](https://juliapackages.com/p/revise) needs to recompile
+2. In `history` mode, incomplete lines produce a stack trace instead of a line change when the `Return` key is pressed
 
 For the first bug, if possible and acceptable, the workaround is to tab
-complete the line and then exit `History` mode (with the `Home` key followed
+complete the line and then exit `history` mode (with the `Home` key followed
 by `Backspace`) just before the `Return` key is pressed. Alternatively, a
-reload must be triggered before the `History` mode command is executed e.g.
+reload must be triggered before the `history` mode command is executed e.g.
 by prepending the command with `Revise.retry();`.
 
 For the second bug, a workaround is to use the `Meta`+`Return` key combination
-instead of only `Return`. Exiting `History` mode as above is also an option
-and if necessary, `History` mode can be reentered (by pressing the `Home` key
+instead of only `Return`. Exiting `history` mode as above is also an option
+and if necessary, `history` mode can be reentered (by pressing the `Home` key
 followed by the `!` key) subsequently.
 
 ## Feedback

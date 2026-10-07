@@ -8,7 +8,8 @@ struct HistoryCompletionProvider <: CompletionProvider
 end
 
 basehist = () -> Base.active_repl.mistate.current_mode.hist
-prompt_text() = "history> "
+prompt_text() = get(ENV, "HISTORY_PROMPT", "history> ")
+separator() = get(ENV, "HISTORY_HINT_SEPARATOR", "  👉  ")
 
 function redefine_basehist!(f::Function)
     isinteractive() && error("This function may not be used in interactive sessions")
@@ -75,19 +76,18 @@ function input_handler(inputstr)
 end
 
 function complete_line(x::HistoryCompletionProvider, s; hint::Any=:no_hint)
-    separator = " --> "
     firstpart = String(s.input_buffer.data[1:s.input_buffer.ptr-1])
     firstpartsub = substitution(firstpart; mode=:tab)
     if firstpart != firstpartsub
         if hint == true
             incomplete_end =  "  ⃨"
-            w = displaysize(stdout)[2] - sum((prompt_text(), firstpart, separator, incomplete_end) .|> length)
+            w = displaysize(stdout)[2] - sum((prompt_text(), firstpart, separator(), incomplete_end) .|> length) - 1 # The final -1 helps in situations where emojis take up extra space
             hintstr = if contains("\n")(firstpartsub) || length(firstpartsub) > w
                 split(firstpartsub, "\n")[1][1:min(end,w)] * incomplete_end
             else
                 firstpartsub
             end
-            return ([firstpart * separator * hintstr ], firstpart, true)
+            return ([firstpart * separator() * hintstr ], firstpart, true)
         end
         return ([firstpartsub], firstpart, true)
     elseif VERSION <= v"1.9-"
